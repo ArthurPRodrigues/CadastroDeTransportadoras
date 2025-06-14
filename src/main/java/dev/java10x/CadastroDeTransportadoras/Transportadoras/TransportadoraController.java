@@ -1,4 +1,4 @@
-package dev.java10x.CadastroDeTransportadoras;
+package dev.java10x.CadastroDeTransportadoras.Transportadoras;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
