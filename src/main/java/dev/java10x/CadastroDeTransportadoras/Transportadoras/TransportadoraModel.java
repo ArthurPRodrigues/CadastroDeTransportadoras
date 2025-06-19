@@ -1,6 +1,7 @@
 package dev.java10x.CadastroDeTransportadoras.Transportadoras;
 
-import java.util.List;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import dev.java10x.CadastroDeTransportadoras.Cotacoes.CotacoesModel;
 import jakarta.persistence.Entity;
@@ -13,6 +14,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_transportadoras")
+@NoArgsConstructor
+@Data
 public class TransportadoraModel {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,69 +25,8 @@ public class TransportadoraModel {
 	private String email;
 	private String cidade;
 	private String estado;
+
 	@ManyToOne
 	@JoinColumn(name = "cotacao_id", nullable = false) //Foreign key to CotacoesModel
 	private CotacoesModel cotacoes;
-
-	public TransportadoraModel() {
-
-	}
-
-	public TransportadoraModel(String nome, String CNPJ, String telefone, String email, String cidade, String estado) {
-		this.nome = nome;
-		this.CNPJ = CNPJ;
-		this.telefone = telefone;
-		this.email = email;
-		this.cidade = cidade;
-		this.estado = estado;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public String getEstado() {
-		return estado;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getTelefone() {
-		return telefone;
-	}
-
-	public String getCNPJ() {
-		return CNPJ;
-	}
-
-	public String getCidade() {
-		return cidade;
-	}
-
-	public void setCNPJ(String CNPJ) {
-		this.CNPJ = CNPJ;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
 }
-
