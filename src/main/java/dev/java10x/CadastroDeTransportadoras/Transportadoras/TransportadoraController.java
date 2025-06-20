@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TransportadoraController {
 
+	@GetMapping("/início")
+	public String getInicio() {
+		return "Bem-vindo ao Cadastro de Transportadoras!";
+	}
+
 	@GetMapping("/transportadoras")
 	public String getTransportadoras() {
 		return "Lista de Transportadoras";

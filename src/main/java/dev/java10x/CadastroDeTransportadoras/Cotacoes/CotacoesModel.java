@@ -7,11 +7,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import dev.java10x.CadastroDeTransportadoras.Transportadoras.TransportadoraModel;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -29,6 +31,10 @@ public class CotacoesModel {
 	private int quantidade;
 	private String estado_destino;
 
-	@OneToMany(mappedBy = "cotacoes")
-	private List<TransportadoraModel> transportadoras;
+	@ManyToOne
+	@JoinColumn(name = "transportadora_id")
+	private TransportadoraModel transportadora;
+
+
+
 }
