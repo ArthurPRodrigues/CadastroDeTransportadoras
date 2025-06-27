@@ -1,10 +1,18 @@
 package dev.java10x.CadastroDeTransportadoras.Transportadoras;
 
 import java.util.List;
-import dev.java10x.CadastroDeTransportadoras.Cotacoes.CotacoesModel;
-import jakarta.persistence.*;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import dev.java10x.CadastroDeTransportadoras.Cotacoes.CotacoesModel;
+import dev.java10x.CadastroDeTransportadoras.Documentos.DocumentoModel;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_transportadoras")
@@ -13,14 +21,10 @@ import lombok.NoArgsConstructor;
 public class TransportadoraModel {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id")
-	private Long id;
-
-	@Column(name = "cnpj")
+	@Column(name = "cnpj", length = 14, nullable = false, unique = true)
 	private String cnpj;
 
-	@Column(name = "nome")
+	@Column(name = "nome", nullable = false)
 	private String nome;
 
 	@Column(name = "telefone")
@@ -35,7 +39,9 @@ public class TransportadoraModel {
 	@Column(name = "estado")
 	private String estado;
 
-	@OneToMany(mappedBy = "transportadora", cascade = CascadeType.ALL)
-	private List<CotacoesModel> cotacoes;
+	@OneToMany(mappedBy = "transportadora", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<DocumentoModel> documentos;
 
+	@OneToMany(mappedBy = "transportadora", cascade = CascadeType.ALL, orphanRemoval = true)
+	private List<CotacoesModel> cotacoes;
 }

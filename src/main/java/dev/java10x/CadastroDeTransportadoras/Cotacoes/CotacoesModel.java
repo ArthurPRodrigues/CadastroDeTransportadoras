@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import dev.java10x.CadastroDeTransportadoras.Transportadoras.TransportadoraModel;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,15 +27,19 @@ public class CotacoesModel {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long Id;
+	@Column(name = "id", nullable = false, unique = true)
+	private Long id;
+
+	@Column(name = "produto", nullable = false)
 	private String produto;
+
+	@Column(name = "valor_unitario", nullable = false)
 	private int quantidade;
+
+	@Column(name = "valor_total", nullable = false)
 	private String estado_destino;
 
 	@ManyToOne
-	@JoinColumn(name = "transportadora_id")
+	@JoinColumn(name = "cnpj_transportadora", nullable = false)
 	private TransportadoraModel transportadora;
-
-
-
 }
