@@ -18,8 +18,10 @@ public class TransportadoraModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private String nome;
+	@Column(unique = true, nullable = false)
 	private String cnpj;
+
+	private String nome;
 	private String estado;
 	private String cidade;
 	private String endereco;

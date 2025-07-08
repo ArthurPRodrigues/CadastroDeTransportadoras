@@ -18,15 +18,13 @@ public class RegistroDocumentoModel {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private LocalDate dataRegistro;
 	private LocalDate dataVencimento;
-	private String status; // Ex: "VALIDO", "VENCIDO"
 
 	@ManyToOne
-	@JoinColumn(name = "documento_id")
-	private DocumentoModel documento;
-
-	@ManyToOne
-	@JoinColumn(name = "transportadora_id")
+	@JoinColumn(name = "transportadora_id", nullable = false)
 	private TransportadoraModel transportadora;
+
+	@ManyToOne
+	@JoinColumn(name = "documento_id", nullable = false)
+	private DocumentoModel documento;
 }

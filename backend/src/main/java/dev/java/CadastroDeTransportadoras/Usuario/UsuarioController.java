@@ -1,17 +1,22 @@
 package dev.java.CadastroDeTransportadoras.Usuario;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
-@RequestMapping("/auth")
-@RequiredArgsConstructor
-@CrossOrigin(origins = "*")
+@RequestMapping("/usuarios")
 public class UsuarioController {
 
 	private final UsuarioService usuarioService;
+
+	public UsuarioController(UsuarioService usuarioService) {
+		this.usuarioService = usuarioService;
+	}
 
 	@PostMapping("/login")
 	public ResponseEntity<UsuarioModel> login(@RequestBody LoginRequest request) {
@@ -22,10 +27,5 @@ public class UsuarioController {
 		} else {
 			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
 		}
-	}
-
-	@GetMapping("/usuario")
-	public UsuarioModel getUsuarioAtual() {
-		return usuarioService.getUsuarioMockado();
 	}
 }

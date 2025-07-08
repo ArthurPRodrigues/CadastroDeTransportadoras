@@ -29,9 +29,16 @@ public class TransportadoraService {
 	}
 
 	public TransportadoraModel salvar(TransportadoraModel transportadora) {
-		atualizarDisponibilidade(transportadora);
-		return transportadoraRepository.save(transportadora);
+		// 1. Salva no banco para gerar o ID
+		TransportadoraModel salva = transportadoraRepository.save(transportadora);
+
+		// 2. Atualiza a flag com base nos documentos da transportadora salva
+		atualizarDisponibilidade(salva);
+
+		// 3. Salva novamente com a flag atualizada
+		return transportadoraRepository.save(salva);
 	}
+
 
 	public void deletar(Long id) {
 		transportadoraRepository.deleteById(id);
