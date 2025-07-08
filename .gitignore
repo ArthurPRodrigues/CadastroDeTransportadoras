@@ -1,6 +1,6 @@
-HELP.md
+backend/HELP.md
 target/
-.mvn/wrapper/maven-wrapper.jar
+backend/.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
 
@@ -33,5 +33,11 @@ build/
 ### VS Code ###
 .vscode/
 
-##.env
+### Arquivos de configuração sensíveis ###
 .env
+.env.local
+.env.*.local
+application.properties
+application.yml
+application-*.properties
+application-*.yml
